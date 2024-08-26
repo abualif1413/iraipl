@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --ext js,jsx,css,scss,json,twig --ignore \"public/javascripts/web-app.js\" --exec \"npm run build-web-app && node ./bin/www\"",
+    "dev-win": "nodemon --ext js,jsx,css,scss,json,twig --ignore \"public/javascripts/web-app.js\" --exec \"npm run build-web-app -and node ./bin/www\"",
     "build-web-app": "esbuild web-app/index.js --bundle --outfile=public/javascripts/web-app.js --loader:.js=jsx"
   },
   "dependencies": {
