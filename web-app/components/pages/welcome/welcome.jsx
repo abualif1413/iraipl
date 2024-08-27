@@ -53,7 +53,12 @@ export const Welcome = () => {
                 <Stack direction="row" spacing={1}>
                     <Typography variant="h6">Tech stacks:</Typography>
                     {techStacks.map(({ avatar, label }) => (
-                        <Chip avatar={<Avatar alt={label} src={avatar} />} label={label} variant="outlined" />
+                        <Chip
+                            key={label}
+                            avatar={<Avatar alt={label} src={avatar} />}
+                            label={label}
+                            variant="outlined"
+                        />
                     ))}
                 </Stack>
             </StyledPaper>
