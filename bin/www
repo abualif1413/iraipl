@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+require('@dotenvx/dotenvx').config();
 
 var app = require('../app');
 // var debug = require('debug')('iraipl:server');
