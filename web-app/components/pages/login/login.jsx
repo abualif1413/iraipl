@@ -11,7 +11,6 @@ const StyledBox = styled(Box)(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f4f4f4',
-    //  #f0f4f9
 }));
 
 const StyledPaper = styled(Paper)(() => ({
@@ -24,117 +23,97 @@ const StyledGrid = styled(Grid)(() => ({
     justifyContent: 'space-around',
 }));
 
+const BoxImage = styled(Box)(() => ({
+    display: 'grid',
+    placeItems: 'center',
+}));
+
+const StyledImage = {
+    backgroundColor: 'rgb(234, 245, 247)',
+};
+
+const BoxLogin = styled(Box)(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+    textAlign: 'center',
+    position: 'relative',
+    padding: '30px 0px 0px 0px',
+}));
+
+// For Input text
+const InputField = (props) => <StyledTextField variant="outlined" required size="small" {...props} />;
+
+const StyledTextField = styled(TextField)(() => ({
+    '& .MuiInputBase-input::placeholder': {
+        fontSize: '15px',
+        fontWeight: '400',
+        color: 'gray',
+    },
+}));
+//end
+
+const LoginButton = styled(Button)(() => ({
+    marginTop: '15px',
+    textTransform: 'capitalize',
+}));
+
+const ForgotButton = styled(Button)(() => ({
+    color: 'gray',
+    textTransform: 'capitalize',
+}));
+
+const SignUpText = styled(Typography)(() => ({
+    top: '80px',
+    fontSize: 'small',
+}));
+
 export const Login = () => {
     return (
         <StyledBox>
             <StyledPaper>
                 <StyledGrid container>
-                    <Box sx={{ display: 'grid', placeItems: 'center' }}>
-                        <img src="/images/logo-ira.png" alt="Logo" style={{ backgroundColor: 'rgb(234, 245, 247)' }} />
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '15px',
-                            textAlign: 'center',
-                            position: 'relative',
-                        }}
-                    >
-                        {/* <Typography
-                            variant="h5"
-                            sx={{
-                                marginY: '10px',
-                                fontWeight: 'bold',
-                                // textAlign: 'left',
-                                margin: '30px 0px 0px 0px',
-                                fontSize: '30px',
-                            }}
-                        >
-                            Login Anggota
-                        </Typography> */}
-                        <TextField
-                            variant="outlined"
-                            label="Email"
-                            placeholder="Email"
-                            required
-                            size="small"
-                            sx={{
-                                margin: '30px 0px 0px 0px',
-                                input: {
-                                    '&::placeholder': {
-                                        fontSize: '15px',
-                                        fontWeight: '5px',
-                                        color: 'gray',
-                                    },
-                                },
-                            }}
-                            // sx={{ borderRadius: '50%' }}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <MailRoundedIcon fontSize="medium" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <TextField
-                            variant="outlined"
-                            label="Password"
-                            placeholder="Password"
-                            required
-                            size="small"
-                            sx={{
-                                input: {
-                                    '&::placeholder': {
-                                        fontSize: '15px',
-                                        fontWeight: '5px',
-                                        color: 'gray',
-                                    },
-                                },
-                            }}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockRoundedIcon fontSize="medium" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <Button
-                            variant="contained"
-                            size="medium"
-                            color="primary"
-                            disableElevation
-                            sx={{ marginTop: '15px', textTransform: 'capitalize' }}
-                        >
-                            Login
-                        </Button>
-                        <Button
-                            variant="text"
-                            size="medium"
-                            color="success"
-                            disableElevation
-                            sx={{ color: 'grey', textTransform: 'capitalize' }}
-                        >
-                            Lupa Password?
-                        </Button>
-                        {/* <Box sx={{ fontFamily: 'serif' }}>
-                            <Typography component="span" sx={{ fontFamily: 'inherit' }}>
-                                Lupa&nbsp;
-                            </Typography>
-                            <Link href="#" underline="hover" sx={{ fontFamily: 'inherit', marginBottom: '20px' }}>
-                                {'Email / Password?'}
-                            </Link>
-                        </Box> */}
-                        <Typography component="span" fontSize="small" sx={{ top: '80px' }}>
-                            {'Belum punya akun?'}&nbsp;
-                            <Link component={RouterLink} to="/welcome" underline="hover" color="black">
-                                {'Daftar'}
-                            </Link>
-                        </Typography>
-                    </Box>
+                    <BoxImage>
+                        <img src="/images/logo-ira.png" alt="Logo" style={StyledImage} />
+                    </BoxImage>
+                    <form action="" method="post">
+                        <BoxLogin>
+                            <InputField
+                                label="Email"
+                                placeholder="Email"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <MailRoundedIcon fontSize="medium" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <InputField
+                                label="Password"
+                                placeholder="Password"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <LockRoundedIcon fontSize="medium" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <LoginButton variant="contained" size="medium" color="primary" disableElevation>
+                                Login
+                            </LoginButton>
+                            <ForgotButton variant="text" size="medium" disableElevation>
+                                Lupa Password?
+                            </ForgotButton>
+                            <SignUpText component="span">
+                                {'Belum punya akun?'}&nbsp;
+                                <Link component={RouterLink} to="/welcome" underline="hover" color="black">
+                                    {'Daftar'}
+                                </Link>
+                            </SignUpText>
+                        </BoxLogin>
+                    </form>
                 </StyledGrid>
                 <Link component={RouterLink} to="/welcome">
                     To welcome page
