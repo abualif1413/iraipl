@@ -15,6 +15,10 @@ const StyledPaper = styled(Paper)(() => ({
     width: '800px',
 }));
 
+const TextLink = styled(Link)(() => ({
+    marginRight: '10px',
+}));
+
 export const Home = () => {
     return (
         <StyledBox>
@@ -22,12 +26,12 @@ export const Home = () => {
                 <Typography variant="h2">IRA Pengelolaan v1</Typography>
                 <Typography variant="h4">by: Khalifi Matjar</Typography>
                 <Typography variant="h5">Assalamualaikum, welcome to home of this application</Typography>
-                <Link component={RouterLink} to="/welcome" sx={{ marginRight: '10px' }}>
+                <TextLink component={RouterLink} to="/welcome">
                     To welcome page
-                </Link>
-                <Link component={RouterLink} to="/login">
+                </TextLink>
+                <TextLink component={RouterLink} to="/login">
                     To login page
-                </Link>
+                </TextLink>
             </StyledPaper>
         </StyledBox>
     );
