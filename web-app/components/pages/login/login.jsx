@@ -3,6 +3,8 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import LockRoundedIcon from '@mui/icons-material/LockRounded';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const StyledBox = styled(Box)(() => ({
     width: '100dvw',
@@ -42,13 +44,17 @@ const BoxLogin = styled(Box)(() => ({
 }));
 
 // For Input text
-const InputField = (props) => <StyledTextField variant="outlined" required size="small" {...props} />;
+const InputField = (props) => <StyledTextField variant="outlined" size="small" {...props} />;
 
 const StyledTextField = styled(TextField)(() => ({
     '& .MuiInputBase-input::placeholder': {
         fontSize: '15px',
         fontWeight: '400',
         color: 'gray',
+    },
+    '& .MuiInputBase-input': {
+        fontSize: '15px',
+        fontWeight: '300',
     },
 }));
 //end
@@ -69,6 +75,21 @@ const SignUpText = styled(Typography)(() => ({
 }));
 
 export const Login = () => {
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        onSubmit: (values) => {
+            console.log(JSON.stringify(values, null, 2));
+        },
+        validationSchema: Yup.object({
+            //Yup Validation
+            email: Yup.string().email('Invalid email address').required('Required'),
+            password: Yup.string().required('Required'),
+        }),
+    });
+
     return (
         <StyledBox>
             <StyledPaper>
@@ -76,11 +97,16 @@ export const Login = () => {
                     <BoxImage>
                         <img src="/images/logo-ira.png" alt="Logo" style={StyledImage} />
                     </BoxImage>
-                    <form action="" method="post">
+                    <form action="" method="post" onSubmit={formik.handleSubmit}>
                         <BoxLogin>
                             <InputField
                                 label="Email"
                                 placeholder="Email"
+                                name="email"
+                                onChange={formik.handleChange}
+                                value={formik.values.email}
+                                helperText={!!formik.errors.email && formik.touched.email && formik.errors.email}
+                                error={!!formik.errors.email && formik.touched.email}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -92,6 +118,10 @@ export const Login = () => {
                             <InputField
                                 label="Password"
                                 placeholder="Password"
+                                name="password"
+                                type="password"
+                                onChange={formik.handleChange}
+                                value={formik.values.password}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -100,16 +130,16 @@ export const Login = () => {
                                     ),
                                 }}
                             />
-                            <LoginButton variant="contained" size="medium" color="primary" disableElevation>
+                            <LoginButton variant="contained" size="medium" color="primary" type="submit" disableElevation>
                                 Login
                             </LoginButton>
                             <ForgotButton variant="text" size="medium" disableElevation>
                                 Lupa Password?
                             </ForgotButton>
                             <SignUpText component="span">
-                                {'Belum punya akun?'}&nbsp;
+                                Belum punya akun?
                                 <Link component={RouterLink} to="/welcome" underline="hover" color="black">
-                                    {'Daftar'}
+                                    Daftar
                                 </Link>
                             </SignUpText>
                         </BoxLogin>
