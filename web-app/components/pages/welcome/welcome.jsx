@@ -45,20 +45,12 @@ export const Welcome = () => {
             <StyledPaper>
                 <Typography variant="h2">IRA Pengelolaan v1</Typography>
                 <Typography variant="h4">by: Khalifi Matjar</Typography>
-                <Typography variant="h5">
-                    A progressive web based application built to manage and monitor flows of environment and
-                    neighborhood maintenance bill is better
-                </Typography>
+                <Typography variant="h5">A progressive web based application built to manage and monitor flows of environment and neighborhood maintenance bill is better</Typography>
                 <br />
                 <Stack direction="row" spacing={1}>
                     <Typography variant="h6">Tech stacks:</Typography>
                     {techStacks.map(({ avatar, label }) => (
-                        <Chip
-                            key={label}
-                            avatar={<Avatar alt={label} src={avatar} />}
-                            label={label}
-                            variant="outlined"
-                        />
+                        <Chip key={label} avatar={<Avatar alt={label} src={avatar} />} label={label} variant="outlined" />
                     ))}
                 </Stack>
             </StyledPaper>
