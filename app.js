@@ -7,6 +7,7 @@ var logger = require('morgan');
 /** App routers */
 var indexRouter = require('./routes/index');
 var welcomeRouter = require('./routes/welcome');
+var authenticationRouter = require('./routes/authentication');
 
 /** App DB works */
 var { sequelize } = require('./database/connection');
@@ -47,6 +48,7 @@ app.use('/', indexRouter);
 
 // All API routes goes here
 app.use('/api/welcome', welcomeRouter);
+app.use('/api/authentication', authenticationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req, _res, next) {

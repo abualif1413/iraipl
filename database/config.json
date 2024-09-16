@@ -1,0 +1,10 @@
+{
+    "development": {
+        "username": "development",
+        "password": "iraipldbdev",
+        "database": "db-iraipl",
+        "host": "localhost",
+        "dialect": "mysql",
+        "port": "4417"
+    }
+}

@@ -2,11 +2,20 @@
 
 ## Getting Started
 
+-   Make sure you have docker installed
 -   Make sure you are using NVM to manage your Node version, if you are not please manage to install and configure it first and feel free to check their documentation [here](https://github.com/nvm-sh/nvm/blob/master/README.md)
 -   Run `nvm use` from terminal to automatically use the version of Node of this project
 -   Run `npm i` from terminal to install all dependencies
 
 ## Run application
+
+### Spin up service
+
+-   Run `docker compose up -d` to spin-up our docker and start our services like database and cache
+-   Run `npm run db:migrate:up` to run database migration
+-   (Optional) You may want to run database seeder by running `npm run db:seed:up` to fill in all default record
+
+### Run application in development environment
 
 -   Make sure you are using the project's version of Node, run `nvm use` from terminal to ensure it
 -   Run `npm run dev` (or `npm run dev-win` if your are using Windows and you can consider Powershell or Command Prompt as terminal) to run and it will run in `http://localhost:3000`

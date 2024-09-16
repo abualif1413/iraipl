@@ -5,6 +5,10 @@
     "scripts": {
         "dev": "nodemon --ext js,jsx,css,scss,json,twig --ignore \"public/javascripts/web-app.js\" --exec \"npx eslint web-app && npm run build-web-app && dotenvx run --env-file=.env.development -- node ./bin/www\"",
         "build-web-app": "esbuild web-app/index.js --bundle --outfile=public/javascripts/web-app.js --loader:.js=jsx",
+        "db:migrate:up": "npx sequelize-cli db:migrate",
+        "db:migrate:down": "npx sequelize-cli db:migrate:undo",
+        "db:seed:up": "npx sequelize-cli db:seed:all",
+        "db:seed:down": "npx sequelize-cli db:seed:undo:all",
         "formatting": "npx prettier . --write"
     },
     "dependencies": {
@@ -32,6 +36,7 @@
         "eslint-plugin-react": "^7.35.0",
         "globals": "^15.9.0",
         "nodemon": "^3.1.4",
-        "prettier": "3.3.3"
+        "prettier": "3.3.3",
+        "sequelize-cli": "^6.6.2"
     }
 }
