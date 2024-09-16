@@ -10,7 +10,7 @@ var welcomeRouter = require('./routes/welcome');
 var authenticationRouter = require('./routes/authentication');
 
 /** App DB works */
-var { sequelize } = require('./database/connection');
+var { sequelize } = require('./database/models');
 
 var app = express();
 

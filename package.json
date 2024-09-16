@@ -22,6 +22,7 @@
         "esbuild": "^0.23.1",
         "express": "~4.16.1",
         "http-errors": "~1.6.3",
+        "jsonwebtoken": "^9.0.2",
         "morgan": "~1.9.1",
         "mysql2": "^3.11.2",
         "react": "^18.3.1",
