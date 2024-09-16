@@ -1,6 +1,6 @@
-import { Box, Paper, styled, Typography } from '@mui/material';
+import { Box, Paper, styled, Typography, Link } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 const StyledBox = styled(Box)(() => ({
     width: '100dvw',
@@ -15,6 +15,10 @@ const StyledPaper = styled(Paper)(() => ({
     width: '800px',
 }));
 
+const TextLink = styled(Link)(() => ({
+    marginRight: '10px',
+}));
+
 export const Home = () => {
     return (
         <StyledBox>
@@ -22,7 +26,12 @@ export const Home = () => {
                 <Typography variant="h2">IRA Pengelolaan v1</Typography>
                 <Typography variant="h4">by: Khalifi Matjar</Typography>
                 <Typography variant="h5">Assalamualaikum, welcome to home of this application</Typography>
-                <Link to="/welcome">To welcome page</Link>
+                <TextLink component={RouterLink} to="/welcome">
+                    To welcome page
+                </TextLink>
+                <TextLink component={RouterLink} to="/login">
+                    To login page
+                </TextLink>
             </StyledPaper>
         </StyledBox>
     );

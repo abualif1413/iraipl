@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Welcome } from '../components';
+import { Home, Login, Welcome } from '../components';
 
 export const routesDefinitions = [
     {
@@ -9,5 +9,9 @@ export const routesDefinitions = [
     {
         path: '/welcome',
         element: <Welcome />,
+    },
+    {
+        path: '/login',
+        element: <Login />,
     },
 ];
