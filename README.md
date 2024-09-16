@@ -14,6 +14,7 @@
 -   Run `docker compose up -d` to spin-up our docker and start our services like database and cache
 -   Run `npm run db:migrate:up` to run database migration
 -   (Optional) You may want to run database seeder by running `npm run db:seed:up` to fill in all default record
+-   If you want to log out from your work of development, don't forget to shutdown docker compose by `docker compose down`
 
 ### Run application in development environment
 
