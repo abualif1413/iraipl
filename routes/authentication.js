@@ -13,6 +13,7 @@ router.post('/login-attempt', async function (req, res, _next) {
             email,
             password: hashPassword,
         },
+        include: db.RoleUser,
     });
 
     if (user.length > 0) {
@@ -21,6 +22,7 @@ router.post('/login-attempt', async function (req, res, _next) {
             success: true,
             token: signJwt(user[0].id),
             name: user[0].name,
+            roleUser: { ...user[0].RoleUser.dataValues },
             metadata: {
                 ...req.body,
             },

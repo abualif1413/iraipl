@@ -18,6 +18,18 @@ module.exports = {
             password: {
                 type: Sequelize.STRING,
             },
+            roleUserId: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: {
+                        tableName: 'tbl-role-user',
+                        name: 'RoleUser',
+                    },
+                    key: 'id',
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE',
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
@@ -29,6 +41,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('Users');
+        await queryInterface.dropTable('tbl-user');
     },
 };
