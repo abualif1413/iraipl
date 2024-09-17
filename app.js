@@ -4,8 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+/** App routers */
 var indexRouter = require('./routes/index');
 var welcomeRouter = require('./routes/welcome');
+var authenticationRouter = require('./routes/authentication');
+
+/** App DB works */
+var { sequelize } = require('./database/models');
 
 var app = express();
 
@@ -30,11 +35,20 @@ app.use(function (req, _res, next) {
     next();
 });
 
+// Test DB connection. Exit application if couldn't be established
+sequelize
+    .authenticate()
+    .then(() => void console.log('Connection to database has been established successfully.'))
+    .catch((error) => {
+        throw Error(error);
+    });
+
 // Main route for web application
 app.use('/', indexRouter);
 
 // All API routes goes here
 app.use('/api/welcome', welcomeRouter);
+app.use('/api/authentication', authenticationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req, _res, next) {
