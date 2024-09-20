@@ -5,6 +5,7 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import LockRoundedIcon from '@mui/icons-material/LockRounded';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const StyledBox = styled(Box)(() => ({
     width: '100dvw',
@@ -82,6 +83,32 @@ export const Login = () => {
         },
         onSubmit: (values) => {
             console.log(JSON.stringify(values, null, 2));
+            axios({
+                method: 'post',
+                url: 'http://localhost:5000/api/authentication/login-attempt',
+                data: {
+                    email: values.email,
+                    password: values.password,
+                },
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    const token = response.data.token;
+                    if (token) {
+                        localStorage.setItem('token', token);
+                        console.log('token: ', token);
+                    } else {
+                        console.log('gada token');
+                    }
+                    // berhasil
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        console.log(error.response.data); // Cek pesan error dari server
+                    } else {
+                        console.log(error.message); // Cek error jika tidak ada respons dari server
+                    }
+                });
         },
         validationSchema: Yup.object({
             //Yup Validation
