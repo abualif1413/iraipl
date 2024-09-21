@@ -100,7 +100,6 @@ export const Login = () => {
                     } else {
                         console.log('gada token');
                     }
-                    // berhasil
                 })
                 .catch(function (error) {
                     if (error.response) {
