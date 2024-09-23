@@ -6,6 +6,7 @@ import LockRoundedIcon from '@mui/icons-material/LockRounded';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { LOCAL_STORAGE_TOKEN_KEY } from '../../../utils';
 
 const StyledBox = styled(Box)(() => ({
     width: '100dvw',
@@ -81,31 +82,28 @@ export const Login = () => {
             email: '',
             password: '',
         },
-        onSubmit: (values) => {
-            console.log(JSON.stringify(values, null, 2));
+        onSubmit: ({ email, password }) => {
             axios({
                 method: 'post',
-                url: 'http://localhost:5000/api/authentication/login-attempt',
+                url: '/api/authentication/login-attempt',
                 data: {
-                    email: values.email,
-                    password: values.password,
+                    email,
+                    password,
                 },
             })
                 .then(function (response) {
-                    console.log(response.data);
                     const token = response.data.token;
                     if (token) {
-                        localStorage.setItem('token', token);
-                        console.log('token: ', token);
+                        localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
                     } else {
-                        console.log('gada token');
+                        console.error('No token');
                     }
                 })
                 .catch(function (error) {
                     if (error.response) {
-                        console.log(error.response.data); // Cek pesan error dari server
+                        console.error(error.response.data);
                     } else {
-                        console.log(error.message); // Cek error jika tidak ada respons dari server
+                        console.error(error.message);
                     }
                 });
         },
