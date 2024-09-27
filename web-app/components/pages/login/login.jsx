@@ -1,10 +1,12 @@
-import { Box, styled, Typography, Paper, Grid, TextField, Button, InputAdornment, Link } from '@mui/material';
+import { Box, styled, Typography, Paper, Grid, TextField, Button, InputAdornment, Link, Backdrop, CircularProgress, Snackbar } from '@mui/material';
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import LockRoundedIcon from '@mui/icons-material/LockRounded';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { LOCAL_STORAGE_TOKEN_KEY } from '../../../utils';
 
 const StyledBox = styled(Box)(() => ({
     width: '100dvw',
@@ -75,13 +77,62 @@ const SignUpText = styled(Typography)(() => ({
 }));
 
 export const Login = () => {
+    const [open, setOpen] = React.useState(false);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false); // untuk Snackbar
+    const [snackbarMessage, setSnackbarMessage] = React.useState(''); // pesan untuk Snackbar
+    let navigate = useNavigate();
+    const handleClose = () => {
+        setOpen(false);
+    };
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
-        onSubmit: (values) => {
-            console.log(JSON.stringify(values, null, 2));
+        onSubmit: ({ email, password }) => {
+            //login start (backdrop open)
+            setOpen(true);
+            setSnackbarOpen(false);
+            axios({
+                method: 'post',
+                url: '/api/authentication/login-attempt',
+                data: {
+                    email,
+                    password,
+                },
+            })
+                .then(function (response) {
+                    const token = response.data.token;
+                    //close backdrop after login
+                    setOpen(false);
+                    if (token) {
+                        localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
+                        setSnackbarMessage('Login berhasil');
+                        setSnackbarOpen(true);
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 1500);
+                    } else {
+                        console.error('No token');
+                        setSnackbarMessage('Login gagal, token tidak ditemukan.');
+                        setSnackbarOpen(true); // snackbar opened
+                    }
+                })
+                .catch(function (error) {
+                    //close the backdrop if failed login
+                    setOpen(false);
+                    if (error.response) {
+                        console.error(error.response.data);
+                        setSnackbarMessage('Login gagal: ' + error.response.data.message);
+                        setSnackbarOpen(true); // Buka Snackbar jika gagal
+                    } else {
+                        console.error(error.message);
+                        setSnackbarMessage('Terjadi kesalahan: ' + error.message);
+                        setSnackbarOpen(true); // Buka Snackbar jika gagal
+                    }
+
+                    setSnackbarOpen(true);
+                });
         },
         validationSchema: Yup.object({
             //Yup Validation
@@ -133,6 +184,16 @@ export const Login = () => {
                             <LoginButton variant="contained" size="medium" color="primary" type="submit" disableElevation>
                                 Login
                             </LoginButton>
+                            <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={open} onClick={handleClose}>
+                                <CircularProgress color="inherit" />
+                            </Backdrop>
+                            <Snackbar
+                                open={snackbarOpen}
+                                autoHideDuration={6000}
+                                onClose={() => setSnackbarOpen(false)}
+                                message={snackbarMessage}
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            />
                             <ForgotButton variant="text" size="medium" disableElevation>
                                 Lupa Password?
                             </ForgotButton>
