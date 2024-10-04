@@ -81,9 +81,7 @@ export const Login = () => {
     const [snackbarOpen, setSnackbarOpen] = React.useState(false); // untuk Snackbar
     const [snackbarMessage, setSnackbarMessage] = React.useState(''); // pesan untuk Snackbar
     let navigate = useNavigate();
-    const handleClose = () => {
-        setOpen(false);
-    };
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -110,7 +108,7 @@ export const Login = () => {
                         setSnackbarMessage('Login berhasil');
                         setSnackbarOpen(true);
                         setTimeout(() => {
-                            navigate('/');
+                            navigate('/dashboard');
                         }, 1500);
                     } else {
                         console.error('No token');
@@ -184,7 +182,7 @@ export const Login = () => {
                             <LoginButton variant="contained" size="medium" color="primary" type="submit" disableElevation>
                                 Login
                             </LoginButton>
-                            <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={open} onClick={handleClose}>
+                            <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={open}>
                                 <CircularProgress color="inherit" />
                             </Backdrop>
                             <Snackbar
