@@ -56,11 +56,19 @@ const MoreButton = styled(IconButton)(() => ({
     textTransform: 'capitalize',
 }));
 const MenuList = styled(Box)(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1px',
     textTransform: 'capitalize',
 }));
 const StyledListSubheader = styled(ListSubheader)(() => ({
     fontSize: 'small',
     backgroundColor: 'inherit',
+}));
+
+const StyledListItem = styled(ListItem)(() => ({
+    width: '200px',
+    marginInline: '10px',
 }));
 
 const StyledListItemButton = styled(ListItemButton)(() => ({
@@ -70,6 +78,7 @@ const StyledListItemButton = styled(ListItemButton)(() => ({
 const StyledListItemText = styled(ListItemText)(() => ({
     fontSize: 'small',
     textTransform: 'capitalize',
+    overflow: 'hidden',
 }));
 
 export const Sidebar = () => {
@@ -91,41 +100,41 @@ export const Sidebar = () => {
             </ProfileBox>
             <MenuList>
                 <List subheader={<StyledListSubheader> MENU UTAMA</StyledListSubheader>}>
-                    <ListItem disablePadding>
+                    <StyledListItem disablePadding sx={{ marginX: '10px' }}>
                         <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText color="" primary="Dashboard" />
                         </StyledListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
+                    </StyledListItem>
+                    <StyledListItem disablePadding>
                         <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText color="" primary="Dashboard" />
                         </StyledListItemButton>
-                    </ListItem>
+                    </StyledListItem>
                 </List>
                 <Divider variant="middle" />
-                <List subheader={<StyledListSubheader> MENU UTAMA</StyledListSubheader>}>
-                    <ListItem disablePadding>
+                <List sx={{ marginTop: '10px' }} subheader={<StyledListSubheader> MENU UTAMA</StyledListSubheader>}>
+                    <StyledListItem disablePadding>
                         <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText primary="Dashboard" />
                         </StyledListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
+                    </StyledListItem>
+                    <StyledListItem disablePadding>
                         <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText color="" primary="Dashboard" />
                         </StyledListItemButton>
-                    </ListItem>
+                    </StyledListItem>
                 </List>
             </MenuList>
         </StyledBox>
