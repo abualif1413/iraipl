@@ -4,8 +4,7 @@ import { styled, Box } from '@mui/material';
 const StyledBox = styled(Box)(() => ({
     width: '90dvw',
     height: '10dvh',
-    // backgroundColor: 'transparent',
-    backgroundColor: '#f6f6f6',
+    backgroundColor: '#F6F6F6',
 }));
 
 export const Header = () => {

@@ -5,7 +5,7 @@ import { Header } from './header';
 const StyledBox = styled(Box)(() => ({
     width: '89.0dvw',
     height: '99.0dvh',
-    backgroundColor: 'FFFFFF',
+    backgroundColor: '#FFFFFF',
     overflow: 'hidden',
 }));
 

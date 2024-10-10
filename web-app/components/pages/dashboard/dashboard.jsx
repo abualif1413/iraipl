@@ -8,14 +8,12 @@ const StyledBox = styled(Box)(() => ({
     display: 'flex',
     justifyContent: 'flex-start',
     overflow: 'hidden',
-    // backgroundColor: 'red',
 }));
 const StyledMain = styled(Box)(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     width: '100%',
-    // backgroundColor: 'red',
 }));
 
 export const Dashboard = () => {
@@ -23,7 +21,7 @@ export const Dashboard = () => {
         <StyledBox>
             <Sidebar />
             <StyledMain>
-                {/* <Header />  ini digunakan semisalnya ingin membuat header untuk meletakkan search bar atau apa gitu*/}
+                {/* show the content with header */}
                 <Content />
             </StyledMain>
         </StyledBox>

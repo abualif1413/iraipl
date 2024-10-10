@@ -88,7 +88,6 @@ export const Login = () => {
             password: '',
         },
         onSubmit: ({ email, password }) => {
-            //login start (backdrop open)
             setOpen(true);
             setSnackbarOpen(false);
             axios({
@@ -122,11 +121,11 @@ export const Login = () => {
                     if (error.response) {
                         console.error(error.response.data);
                         setSnackbarMessage('Login gagal: ' + error.response.data.message);
-                        setSnackbarOpen(true); // Buka Snackbar jika gagal
+                        setSnackbarOpen(true); // opened snackbar after error
                     } else {
                         console.error(error.message);
                         setSnackbarMessage('Terjadi kesalahan: ' + error.message);
-                        setSnackbarOpen(true); // Buka Snackbar jika gagal
+                        setSnackbarOpen(true); // opened snackbar after error
                     }
 
                     setSnackbarOpen(true);
@@ -182,7 +181,7 @@ export const Login = () => {
                             <LoginButton variant="contained" size="medium" color="primary" type="submit" disableElevation>
                                 Login
                             </LoginButton>
-                            <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={open}>
+                            <Backdrop sx={(theme) => ({ color: '#FFFFFF', zIndex: theme.zIndex.drawer + 1 })} open={open}>
                                 <CircularProgress color="inherit" />
                             </Backdrop>
                             <Snackbar

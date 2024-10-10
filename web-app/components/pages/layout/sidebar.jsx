@@ -11,7 +11,6 @@ const StyledBox = styled(Box)(() => ({
     flexShrink: 0,
     padding: '8px 8px',
     display: 'flex',
-    // alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'column',
     gap: '20px',
@@ -46,12 +45,10 @@ const StyledName = styled(Typography)(() => ({
     fontSize: '12px',
     textTransform: 'capitalize',
     overflow: 'hidden',
-    // textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
 }));
 const StyledEmail = styled(Typography)(() => ({
     overflow: 'hidden',
-    // textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
 }));
 const MoreButton = styled(IconButton)(() => ({
@@ -61,13 +58,13 @@ const MoreButton = styled(IconButton)(() => ({
 const MenuList = styled(Box)(() => ({
     textTransform: 'capitalize',
 }));
-
-const StyledListItemButton = styled(ListItemButton)(() => ({
-    // ..
-}));
 const StyledListSubheader = styled(ListSubheader)(() => ({
     fontSize: 'small',
     backgroundColor: 'inherit',
+}));
+
+const StyledListItemButton = styled(ListItemButton)(() => ({
+    height: '40px',
 }));
 
 const StyledListItemText = styled(ListItemText)(() => ({
@@ -103,31 +100,31 @@ export const Sidebar = () => {
                         </StyledListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText color="" primary="Dashboard" />
-                        </ListItemButton>
+                        </StyledListItemButton>
                     </ListItem>
                 </List>
                 <Divider variant="middle" />
                 <List subheader={<StyledListSubheader> MENU UTAMA</StyledListSubheader>}>
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText primary="Dashboard" />
-                        </ListItemButton>
+                        </StyledListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <StyledListItemButton>
                             <ListItemIcon>
                                 <GridViewOutlined fontSize="small" />
                             </ListItemIcon>
                             <StyledListItemText color="" primary="Dashboard" />
-                        </ListItemButton>
+                        </StyledListItemButton>
                     </ListItem>
                 </List>
             </MenuList>
